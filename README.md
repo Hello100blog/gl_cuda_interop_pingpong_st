@@ -6,6 +6,8 @@ This example computes with *CUDA* a temperature scalar field that gets updated e
 
 The *CUDA* compute part is a simple heat propogator. Since at every time step our result depends on the result of the previous frame, we **pingpong** the 3D texture resource handles back and forth every frame.
 
+When building this sample **please be sure to have repositories** **[shared_sources](https://github.com/nvpro-samples/shared_sources)** and **[shared_external](https://github.com/nvpro-samples/shared_external)** in the same level folder!
+
 ![sample screenshot](https://github.com/nvpro-samples/gl_cuda_interop_pingpong_st/blob/master/doc/sample.png?raw=true)
 
 # What does the sample do?
