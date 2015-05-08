@@ -6,20 +6,20 @@ This example computes with *CUDA* a temperature scalar field that gets updated e
 
 The *CUDA* compute part is a simple heat propogator. Since at every time step our result depends on the result of the previous frame, we **pingpong** the 3D texture resource handles back and forth every frame.
 
-![sample screenshot](http://cs624918.vk.me/v624918970/325e3/k8Zvm7nzBMw.jpg)
+![sample screenshot](https://github.com/nvpro-samples/gl_cuda_interop_pingpong_st/blob/master/doc/sample.png?raw=true)
 
 # What does the sample do?
 
 The example itself is pretty straightforward: We just start have a starting temperature scalar field and propogate heat by computing the next frame based on the previous (below). In this example, the scalar field is just a cubic volume allocated in *OpenGL* as a `GL_TEXTURE_3D`
 
-![pic1](http://cs628417.vk.me/v628417970/451/lbwDZXiVIjg.jpg)
+![pic1](https://github.com/nvpro-samples/gl_cuda_interop_pingpong_st/blob/master/doc/pic_1.png?raw=true)
 
 > **Note:** As shown above this example numerically solves the heat equation explicitly. While this is a sufficient example to showcase the type of problem where you need to ping-pong GPU memory resources, please keep in mind this isn't the best way to compute heat propagation. This approach will cause a greater error drift and is less numerically stable than say, a finite volume method approach.
 
 To numerically determine the temperature scalar field of the volume after a given amount of time, we need to know what the temperature scalar field was immediately before. For this reason we need to allocate two identical *OpenGL* `GL_TEXTURE_3D` textures.
 Every next frame we need to swap handles to these `GL_TEXTURE_3D` textures so that we're always reading from one and writing to the other when running the *CUDA* simulation (below)
 
-![pic2](http://cs628417.vk.me/v628417970/45a/0DttW9-iow8.jpg)
+![pic2](https://github.com/nvpro-samples/gl_cuda_interop_pingpong_st/blob/master/doc/pic_2.png?raw=true)
 
 # ...But how do I read and write to `GL_TEXTURE_3D` in *CUDA* and what will it cost me?
 
@@ -29,7 +29,7 @@ In *CUDA* a GPU texture resource is referenced by a `CUarray`
 
 Then all you need is a `CUgraphicsResource` to link the two together. This is just an intermediate handle that you'll only need to use once.
 
-![pic3](http://cs628417.vk.me/v628417970/566/Oy0Ly5nsJ98.jpg)
+![pic3](https://github.com/nvpro-samples/gl_cuda_interop_pingpong_st/blob/master/doc/pic_3.png?raw=true)
 
 Below is a code snippet from the sample showing how the above "bind" is made.
 
@@ -86,8 +86,8 @@ As a result there is **no additional overhead** that comes with *CUDA*-*OpenGL* 
  - OpenGL 4.5 capable NVIDIA GPU
 
 ## Repositories
- - **shared_sources**
- - **shared_external** (AntTweakBar)
+ - **[shared_sources](https://github.com/nvpro-samples/shared_sources)**
+ - **[shared_external](https://github.com/nvpro-samples/shared_external)**
 
 # Contact:
 
